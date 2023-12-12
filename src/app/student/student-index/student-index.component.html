@@ -1,0 +1,28 @@
+<h2>Index</h2>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>StudentID</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>EnrollmentDate</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students; let i = index">
+        <td>{{ student.id }}</td>
+        <td>{{ student.firstMidName }}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ student.enrollmentDate | date: 'yyyy-MM-dd' }}</td>
+        <td>
+          <!-- Add buttons for actions with click event bindings -->
+          <button (click)="editStudent(student)">Edit</button>
+          <button (click)="deleteStudent(student)">Delete</button>
+          <button (click)="viewDetails(student)">Details</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

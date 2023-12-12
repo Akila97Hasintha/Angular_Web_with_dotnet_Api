@@ -1,0 +1,33 @@
+/* app.component.css */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333; /* Adjust as needed */
+    color: #fff; /* Adjust as needed */
+  }
+  
+  .logo {
+    /* Add styles for your logo, e.g., width, height, background-image, etc. */
+  }
+  .logo img {
+    max-width: 70%; /* Set the maximum width to 100% of the container */
+    max-height: 80px; /* Set the maximum height to your desired value */
+    height: auto; /* Maintain the aspect ratio */
+  }
+  nav {
+    display: flex;
+  }
+  
+  nav a {
+    margin: 0 10px; /* Adjust as needed */
+    color: #fff; /* Adjust as needed */
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
