@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StudentServicesService } from '../../student-services.service';
 import { OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-index',
@@ -12,10 +13,11 @@ export class StudentIndexComponent implements OnInit {
   students: any[];
   private dataSubscription: Subscription;
 
-  constructor(private studentServise: StudentServicesService) {
+  constructor(private studentServise: StudentServicesService, private router:Router) {
     this.students = [];
-    this.dataSubscription = this.studentServise.getStudents().subscribe((students) => {
-      this.students = students;
+    this.dataSubscription = this.studentServise.getStudents().subscribe((data : any) => {
+      this.students = data.$values || [];
+      //console.log(data);
     });
   }
 
@@ -39,8 +41,10 @@ export class StudentIndexComponent implements OnInit {
   }
 
   viewDetails(student: any): void {
-    // Implement logic to handle view details action
+    // Implement logic to handle view details actions
     console.log('View details:', student);
+    const studentId = +student.id;
+    this.router.navigate(['/student/details', studentId]);
   }
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,6 +11,14 @@ export class ApiServiceService {
 
   constructor(private httpClient: HttpClient) { 
 
+  }
+
+  private getHeaders(): HttpHeaders {
+    const authToken = localStorage.getItem('authToken'); // Get the token from localStorage
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${authToken}`
+    });
   }
 
   registerUser(userData: any): Observable<any> {
@@ -30,7 +38,9 @@ export class ApiServiceService {
   }
 
   get(endpoint: string): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/${endpoint}`);
+    
+    return this.httpClient.get(`${this.apiUrl}/${endpoint}`);
+    
   }
 
   post(endpoint: string, data: any): Observable<any> {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiServiceService } from '../api-service.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,8 @@ import { ApiServiceService } from '../api-service.service';
 })
 
 export class LoginComponent {
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
   loginForm: FormGroup = this.fb.group({
     
     emailAddress: ['', [Validators.required, Validators.email]],
@@ -35,6 +38,7 @@ export class LoginComponent {
         (response) => {
           console.log('API Response:', response);
           // You can handle the response from the API here
+          localStorage.setItem('authToken', response.token);
           this.router.navigate(['/home']);
           
         },

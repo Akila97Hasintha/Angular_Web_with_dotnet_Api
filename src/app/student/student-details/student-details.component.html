@@ -1,1 +1,46 @@
-<p>student-details works!</p>
+<h2>Student Details</h2>
+<div *ngIf="student">
+  <dl>
+    <dt>
+        FirstName:
+    </dt>
+    <dd>{{student.firstMidName}}</dd>
+    <dt>
+        LastName:
+    </dt>
+    <dd>{{student.lastName}}</dd>
+    <dt>
+        EnrollmentDate:
+    </dt>
+    <dd>{{student.enrollmentDate}}</dd>
+    <dt>
+        Enrollments :
+    </dt>
+    <dd>
+        <table>
+            <thead>
+              <tr>
+                <th>Enrollment ID</th>
+                <th>Course ID</th>
+                <th>Grade</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let enrollment of student.enrollments.$values">
+                <td>{{enrollment.enrollmentID}}</td>
+                <td>{{enrollment.courseID}}</td>
+                <td>{{enrollment.grade}}</td>
+                
+              </tr>
+            </tbody>
+          </table>
+    </dd>
+  </dl>
+
+    
+  </div>
+  
+  <div *ngIf="!student">
+    <p>Loading...</p>
+  </div>
